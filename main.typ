@@ -181,3 +181,75 @@ What does multiplying by $i$ do geometrically? It rotates by $90°$ counterclock
 }))
 
 So the velocity is always perpendicular to the position, and this is exactly what produces circular motion!
+
+= Rotation Matrices
+
+== The Same Idea in 3D
+
+In the complex plane, multiplying by $i$ rotated a vector by $90°$.
+
+In $RR^3$, what operation takes a vector and produces something perpendicular to it?
+
+The cross product! Given a fixed axis $bold(omega)$, the map $bold(v) |-> bold(omega) times bold(v)$ is always $perp$ to $bold(v)$.
+
+== The Cross Product as a Matrix
+
+The cross product $bold(omega) times bold(v)$ is linear in $bold(v)$, so it can be written as a matrix multiplication:
+
+$ bold(omega) times bold(v) = [bold(omega)]_times bold(v) $
+
+where $[bold(omega)]_times$ is the skew-symmetric matrix
+
+$ [bold(omega)]_times = mat(0, -omega_3, omega_2; omega_3, 0, -omega_1; -omega_2, omega_1, 0) $
+
+== Analogy with Euler's Formula
+
+Recall: in the complex plane, $exp(i t)$ traces a circle because $i$ rotates by $90°$.
+
+Now in $RR^3$: if we set $f(t) = exp(t [bold(omega)]_times) bold(v)$, then
+
+$ dif / (dif t) f(t) = [bold(omega)]_times f(t) $
+
+The velocity is always $bold(omega) times "position"$ --- always perpendicular, always the same magnitude.
+
+This is circular motion around the axis $bold(omega)$!
+
+== Exp of a Skew-Symmetric Matrix is a Rotation
+
+#align(center, cetz.canvas(length: 1.4cm, {
+  import cetz.draw: *
+
+  // Axis arrow (ω)
+  set-style(stroke: gray + 1.5pt)
+  line((0, -1.5), (0, 2.2), mark: (end: ">", fill: gray))
+  content((0.4, 2.2), $bold(omega)$)
+
+  // Circle in perspective (ellipse)
+  set-style(stroke: gray.darken(20%) + 1pt)
+  let rx = 1.5
+  let ry = 0.5
+  circle((0, 0), radius: (rx, ry))
+
+  // Vector v
+  set-style(stroke: blue + 2pt)
+  line((0, 0), (1.5, 0), mark: (end: ">", fill: blue))
+  content((1.5, -0.3), text(fill: blue)[$bold(v)$])
+
+  // Rotated vector
+  set-style(stroke: red + 2pt)
+  line((0, 0), (-0.9, 0.45), mark: (end: ">", fill: red))
+  content((-1.2, 0.6), text(fill: red)[$R bold(v)$])
+
+  // Velocity arrow (perpendicular)
+  set-style(stroke: purple + 1.5pt)
+  line((1.5, 0), (1.5, 0.7), mark: (end: ">", fill: purple))
+  content((2.2, 0.4), text(size: 0.8em, fill: purple)[$bold(omega) times bold(v)$])
+
+  // Curved arrow showing rotation
+  set-style(stroke: black + 1pt)
+  bezier((1.3, 0.3), (-0.5, 0.55), (0.5, 1.0), mark: (end: ">", fill: black))
+}))
+
+$ exp(t [bold(omega)]_times) = R(bold(omega), t) $
+
+The matrix exponential of a skew-symmetric matrix is always a rotation matrix.
