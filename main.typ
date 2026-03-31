@@ -27,10 +27,6 @@ Why might we expect this to be true?
 
 The defining property of $exp(k t)$ is
 
-$ dif / (dif t) exp(k t) = k exp(k t) $
-
-Rearranging:
-
 $ underbrace(dif / (dif t) exp(k t), "velocity") = k dot underbrace(exp(k t), "position") $
 
 The constant $k$ is the relative velocity: the ratio of velocity to position.
