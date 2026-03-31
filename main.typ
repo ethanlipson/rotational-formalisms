@@ -182,6 +182,18 @@ What does multiplying by $i$ do geometrically? It rotates by $90°$ counterclock
 
 So the velocity is always perpendicular to the position, and this is exactly what produces circular motion!
 
+== Periodicity of $exp(i theta)$
+
+Since $exp(i t)$ traces the unit circle, after a full revolution ($t = 2 pi$) we return to the start:
+
+$ exp(2 pi i) = 1 $
+
+So $exp(i theta)$ is periodic with period $2 pi i$:
+
+$ exp(i theta) = exp(i (theta + 2 pi n)) quad "for any" n in ZZ $
+
+The map $theta |-> exp(i theta)$ is surjective onto the unit circle, but not injective: every point has infinitely many preimages.
+
 = Rotation Matrices
 
 == The Same Idea in 3D
@@ -252,4 +264,12 @@ The velocity is always $bold(omega) times "position"$, always perpendicular. Thi
 
 $ exp(t [bold(omega)]_times) = R(bold(omega), t) $
 
-The matrix exponential of a skew-symmetric matrix is always a rotation matrix
+== Rotation Matrices $<==>$ Angle-Axis Representation
+
+Every rotation vector $bold(omega) in RR^3$ gives a rotation matrix via $exp([bold(omega)]_times)$, and every rotation matrix arises this way.
+
+But same periodicity as $exp(i theta)$: a full $2 pi$ rotation around the axis changes nothing.
+
+$ exp([bold(omega)]_times) = exp([(bold(omega) + 2 pi hat(bold(omega))) ]_times) $
+
+$exp$ is surjective onto $"SO"(3)$, but each rotation matrix has infinitely many preimages, differing by $2 pi$ multiples along the axis.
