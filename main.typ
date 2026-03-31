@@ -206,13 +206,13 @@ $ [bold(omega)]_times = mat(0, -omega_3, omega_2; omega_3, 0, -omega_1; -omega_2
 
 Recall: in the complex plane, $exp(i t)$ traces a circle because $i$ rotates by $90°$.
 
-Now in $RR^3$: if we set $f(t) = exp(t [bold(omega)]_times) bold(v)$, then
+/ *Matrix Exponential*: $exp(A) = I + A + A^2/2! + dots.c$ satisfies $dif / (dif t) exp(t A) = A exp(t A)$.
+
+So if we set $f(t) = exp(t [bold(omega)]_times) bold(v)$, then
 
 $ dif / (dif t) f(t) = [bold(omega)]_times f(t) $
 
-The velocity is always $bold(omega) times "position"$ --- always perpendicular, always the same magnitude.
-
-This is circular motion around the axis $bold(omega)$!
+The velocity is always $bold(omega) times "position"$, always perpendicular. This is circular motion around the axis $bold(omega)$!
 
 == Exp of a Skew-Symmetric Matrix is a Rotation
 
@@ -242,8 +242,8 @@ This is circular motion around the axis $bold(omega)$!
 
   // Velocity arrow (perpendicular)
   set-style(stroke: purple + 1.5pt)
-  line((1.5, 0), (1.5, 0.7), mark: (end: ">", fill: purple))
-  content((2.2, 0.4), text(size: 0.8em, fill: purple)[$bold(omega) times bold(v)$])
+  line((1.5, 0), (1.4, 0.7), mark: (end: ">", fill: purple))
+  content((1.9, 0.6), text(size: 0.8em, fill: purple)[$bold(omega) times bold(v)$])
 
   // Curved arrow showing rotation
   set-style(stroke: black + 1pt)
@@ -252,4 +252,4 @@ This is circular motion around the axis $bold(omega)$!
 
 $ exp(t [bold(omega)]_times) = R(bold(omega), t) $
 
-The matrix exponential of a skew-symmetric matrix is always a rotation matrix.
+The matrix exponential of a skew-symmetric matrix is always a rotation matrix
