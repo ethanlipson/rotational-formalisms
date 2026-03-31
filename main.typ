@@ -269,3 +269,267 @@ But same periodicity as $exp(i theta)$: a full $2 pi$ rotation around the axis c
 $ exp([bold(omega)]_times) = exp([(bold(omega) + 2 pi hat(bold(omega))) ]_times) $
 
 $exp$ is surjective onto $"SO"(3)$, but each rotation matrix has infinitely many preimages, differing by $2 pi$ multiples along the axis.
+
+= Quaternions
+
+== The Quaternion Algebra
+
+The _quaternions_ $HH$ extend $CC$ by adding two more imaginary units $j$ and $k$:
+
+$ q = a + b i + c j + d k, quad a, b, c, d in RR $
+
+The multiplication rules are:
+$ i^2 = j^2 = k^2 = -1, quad i j = k, quad j k = i, quad k i = j $
+
+Multiplication is _not commutative_: $j i = -k$, etc.
+
+== A 4D Space
+
+A quaternion $q = a + b i + c j + d k$ lives in $RR^4$ with basis ${1, i, j, k}$.
+
+The _pure imaginary_ quaternions $b i + c j + d k$ form a copy of $RR^3$.
+
+The _conjugate_ is $overline(q) = a - b i - c j - d k$, and
+$ |q|^2 = q overline(q) = a^2 + b^2 + c^2 + d^2 $
+
+== Left-Multiplication by $i$
+
+What does $q |-> i q$ do to the four basis elements?
+
+$ 1 arrow.r.bar i, quad i arrow.r.bar -1, quad j arrow.r.bar k, quad k arrow.r.bar -j $
+
+#align(center, cetz.canvas(length: 1.2cm, {
+  import cetz.draw: *
+
+  // (1, i) plane
+  let cx1 = -2.5
+  let r = 1.2
+
+  set-style(stroke: gray + 0.5pt)
+  line((cx1 - 1.7, 0), (cx1 + 1.7, 0), mark: (end: ">", fill: black))
+  line((cx1, -1.7), (cx1, 1.7), mark: (end: ">", fill: black))
+
+  let pts1 = (
+    ($1$, 0deg, (cx1 + r + 0.3, -0.3)),
+    ($i$, 90deg, (cx1 + 0.3, r + 0.3)),
+    ($-1$, 180deg, (cx1 - r - 0.4, -0.3)),
+    ($-i$, 270deg, (cx1 + 0.3, -r - 0.3)),
+  )
+
+  for k in range(4) {
+    let (_, start-angle, _) = pts1.at(k)
+    let (_, end-angle, _) = pts1.at(calc.rem(k + 1, 4))
+    let start-pt = (cx1 + calc.cos(start-angle) * r, calc.sin(start-angle) * r)
+    let end-pt = (cx1 + calc.cos(end-angle) * r, calc.sin(end-angle) * r)
+    let mid-angle = start-angle + 45deg
+    let bend-pt = (cx1 + calc.cos(mid-angle) * (r + 0.4), calc.sin(mid-angle) * (r + 0.4))
+    set-style(stroke: blue + 1.5pt)
+    bezier(start-pt, end-pt, bend-pt, mark: (end: ">", fill: blue))
+  }
+
+  for (label, angle, pos) in pts1 {
+    set-style(stroke: none)
+    circle((cx1 + calc.cos(angle) * r, calc.sin(angle) * r), radius: 0.06, fill: black)
+    content(pos, label)
+  }
+
+  content((cx1, -2.3), text(fill: blue)[$(1, i)$ plane: CCW $90°$])
+
+  // (j, k) plane
+  let cx2 = 2.5
+
+  set-style(stroke: gray + 0.5pt)
+  line((cx2 - 1.7, 0), (cx2 + 1.7, 0), mark: (end: ">", fill: black))
+  line((cx2, -1.7), (cx2, 1.7), mark: (end: ">", fill: black))
+
+  let pts2 = (
+    ($j$, 0deg, (cx2 + r + 0.3, -0.3)),
+    ($k$, 90deg, (cx2 + 0.3, r + 0.3)),
+    ($-j$, 180deg, (cx2 - r - 0.4, -0.3)),
+    ($-k$, 270deg, (cx2 + 0.3, -r - 0.3)),
+  )
+
+  for k in range(4) {
+    let (_, start-angle, _) = pts2.at(k)
+    let (_, end-angle, _) = pts2.at(calc.rem(k + 1, 4))
+    let start-pt = (cx2 + calc.cos(start-angle) * r, calc.sin(start-angle) * r)
+    let end-pt = (cx2 + calc.cos(end-angle) * r, calc.sin(end-angle) * r)
+    let mid-angle = start-angle + 45deg
+    let bend-pt = (cx2 + calc.cos(mid-angle) * (r + 0.4), calc.sin(mid-angle) * (r + 0.4))
+    set-style(stroke: red + 1.5pt)
+    bezier(start-pt, end-pt, bend-pt, mark: (end: ">", fill: red))
+  }
+
+  for (label, angle, pos) in pts2 {
+    set-style(stroke: none)
+    circle((cx2 + calc.cos(angle) * r, calc.sin(angle) * r), radius: 0.06, fill: black)
+    content(pos, label)
+  }
+
+  content((cx2, -2.3), text(fill: red)[$(j, k)$ plane: CCW $90°$])
+}))
+
+Left-multiplication by $i$ rotates both planes by $90°$ counterclockwise.
+
+== Right-Multiplication by $i$
+
+Now consider $q |-> q i$:
+
+$ 1 arrow.r.bar i, quad i arrow.r.bar -1, quad j arrow.r.bar -k, quad k arrow.r.bar j $
+
+#align(center, cetz.canvas(length: 1.2cm, {
+  import cetz.draw: *
+
+  let cx1 = -2.5
+  let r = 1.2
+
+  // (1, i) plane — same as before
+  set-style(stroke: gray + 0.5pt)
+  line((cx1 - 1.7, 0), (cx1 + 1.7, 0), mark: (end: ">", fill: black))
+  line((cx1, -1.7), (cx1, 1.7), mark: (end: ">", fill: black))
+
+  let pts1 = (
+    ($1$, 0deg, (cx1 + r + 0.3, -0.3)),
+    ($i$, 90deg, (cx1 + 0.3, r + 0.3)),
+    ($-1$, 180deg, (cx1 - r - 0.4, -0.3)),
+    ($-i$, 270deg, (cx1 + 0.3, -r - 0.3)),
+  )
+
+  for k in range(4) {
+    let (_, start-angle, _) = pts1.at(k)
+    let (_, end-angle, _) = pts1.at(calc.rem(k + 1, 4))
+    let start-pt = (cx1 + calc.cos(start-angle) * r, calc.sin(start-angle) * r)
+    let end-pt = (cx1 + calc.cos(end-angle) * r, calc.sin(end-angle) * r)
+    let mid-angle = start-angle + 45deg
+    let bend-pt = (cx1 + calc.cos(mid-angle) * (r + 0.4), calc.sin(mid-angle) * (r + 0.4))
+    set-style(stroke: blue + 1.5pt)
+    bezier(start-pt, end-pt, bend-pt, mark: (end: ">", fill: blue))
+  }
+
+  for (label, angle, pos) in pts1 {
+    set-style(stroke: none)
+    circle((cx1 + calc.cos(angle) * r, calc.sin(angle) * r), radius: 0.06, fill: black)
+    content(pos, label)
+  }
+
+  content((cx1, -2.3), text(fill: blue)[$(1, i)$ plane: CCW $90°$])
+
+  // (j, k) plane — REVERSED
+  let cx2 = 2.5
+
+  set-style(stroke: gray + 0.5pt)
+  line((cx2 - 1.7, 0), (cx2 + 1.7, 0), mark: (end: ">", fill: black))
+  line((cx2, -1.7), (cx2, 1.7), mark: (end: ">", fill: black))
+
+  let pts2 = (
+    ($j$, 0deg, (cx2 + r + 0.3, -0.3)),
+    ($k$, 90deg, (cx2 + 0.3, r + 0.3)),
+    ($-j$, 180deg, (cx2 - r - 0.4, -0.3)),
+    ($-k$, 270deg, (cx2 + 0.3, -r - 0.3)),
+  )
+
+  // CW cycle: j → -k → -j → k → j
+  let cw-order = (0, 3, 2, 1)
+  for idx in range(4) {
+    let from = cw-order.at(idx)
+    let to = cw-order.at(calc.rem(idx + 1, 4))
+    let (_, start-angle, _) = pts2.at(from)
+    let (_, end-angle, _) = pts2.at(to)
+    let start-pt = (cx2 + calc.cos(start-angle) * r, calc.sin(start-angle) * r)
+    let end-pt = (cx2 + calc.cos(end-angle) * r, calc.sin(end-angle) * r)
+    let mid-angle = start-angle - 45deg
+    let bend-pt = (cx2 + calc.cos(mid-angle) * (r + 0.4), calc.sin(mid-angle) * (r + 0.4))
+    set-style(stroke: red + 1.5pt)
+    bezier(start-pt, end-pt, bend-pt, mark: (end: ">", fill: red))
+  }
+
+  for (label, angle, pos) in pts2 {
+    set-style(stroke: none)
+    circle((cx2 + calc.cos(angle) * r, calc.sin(angle) * r), radius: 0.06, fill: black)
+    content(pos, label)
+  }
+
+  content((cx2, -2.3), text(fill: red)[$(j, k)$ plane: CW $90°$])
+}))
+
+The $(1, i)$ plane behaves the same, but the $(j, k)$ cycle is *reversed*.
+
+== The Sandwich Product $i q (-i)$
+
+Compose left-multiplication by $i$ with right-multiplication by $-i$:
+
+#align(center, table(
+  columns: 3,
+  stroke: none,
+  align: center,
+  table.header[*Plane*][*Left by $i$*][*Right by $-i$*],
+  table.hline(),
+  [$(1, i)$], [CCW $90°$], [CW $90°$],
+  [$(j, k)$], [CCW $90°$], [CCW $90°$],
+))
+
+- $(1, i)$ plane: $90° - 90° = 0°$ — *fixed!*
+- $(j, k)$ plane: $90° + 90° = 180°$ — *rotated by $180°$*
+
+So $q |-> i q (-i)$ rotates the $(j, k)$ plane (perpendicular to $i$) by $180°$ while leaving the $(1, i)$ plane unchanged.
+
+== Generalizing to Any Unit Imaginary Quaternion
+
+Nothing was special about $i$. For any unit imaginary quaternion $bold(u)$ (with $bold(u)^2 = -1$), we can decompose $HH = RR^4$ into:
+
+- The $(1, bold(u))$ plane
+- The plane perpendicular to $bold(u)$ in $"Im"(HH)$
+
+Then $q |-> bold(u) q (-bold(u))$ rotates the perpendicular plane by $180°$ while fixing the $(1, bold(u))$ plane.
+
+== From $90°$ to Arbitrary Angles
+
+Recall from Euler's formula: $exp(i t)$ is a $t$-radian rotation in the complex plane.
+
+The same applies in $HH$: for a unit imaginary quaternion $bold(u)$,
+
+$ exp(bold(u) t) = cos t + bold(u) sin t $
+
+Left-multiplying by $exp(bold(u) t)$ rotates both planes by $t$ radians (CCW). Right-multiplying by $exp(bold(u) t)$ rotates the $(1, bold(u))$ plane by $t$ (CCW) but the perpendicular plane by $t$ (*CW*).
+
+== The Sandwich Product $exp(bold(u) t) thin q thin exp(-bold(u) t)$
+
+Composing both:
+
+#align(center, table(
+  columns: 3,
+  stroke: none,
+  align: center,
+  table.header[*Plane*][*Left by $exp(bold(u) t)$*][*Right by $exp(-bold(u) t)$*],
+  table.hline(),
+  [$(1, bold(u))$], [CCW $t$], [CW $t$],
+  [$perp bold(u)$], [CCW $t$], [CCW $t$],
+))
+
+- $(1, bold(u))$ plane: $t - t = 0$ — *fixed*
+- $perp bold(u)$ plane: $t + t = 2t$ — *rotated by $2t$*
+
+For a pure imaginary quaternion $bold(v) in "Im"(HH) tilde.equiv RR^3$, the $(1, bold(u))$ component is zero anyway, so this is a rotation of $RR^3$ by angle $2t$ around axis $bold(u)$.
+
+== The Quaternion Rotation Formula
+
+Setting $theta = 2t$ and writing $q = exp(bold(u) thin theta\/2) = cos(theta\/2) + bold(u) sin(theta\/2)$:
+
+#align(center, box(stroke: blue + 1pt, inset: 12pt, radius: 4pt)[
+  To rotate $bold(v) in RR^3$ by angle $theta$ around unit axis $bold(u)$:
+  $ bold(v) |-> q thin bold(v) thin overline(q), quad q = cos theta/2 + bold(u) sin theta/2 $
+])
+
+The half-angle appears because each side of the sandwich contributes half the rotation.
+
+== Quaternions $<==>$ Angle-Axis Representation
+
+Just as with rotation matrices:
+
+$ q = exp(bold(u) thin theta\/2), quad overline(q) = exp(-bold(u) thin theta\/2) $
+
+And the same periodicity: a full $2 pi$ rotation around $bold(u)$ sends $theta\/2 |-> theta\/2 + pi$, which _negates_ $q$:
+
+$ q "and" -q "represent the same rotation" $
+
+The map from unit quaternions to rotations is surjective onto $"SO"(3)$, but $2$-to-$1$: every rotation has exactly two quaternion representatives, $plus.minus q$.
