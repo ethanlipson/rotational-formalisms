@@ -88,7 +88,7 @@ Now consider $f(t) = exp(i t)$. The rule $f'(t) = i dot f(t)$ says:
   The velocity is always $i times$ the current position.
 ])
 
-What does multiplying by $i$ do geometrically? It rotates by $90�$ counterclockwise!
+What does multiplying by $i$ do geometrically? It rotates by $90degree$ counterclockwise!
 
 #align(center, cetz.canvas(length: 1.2cm, {
   import cetz.draw: *
@@ -155,7 +155,7 @@ What does multiplying by $i$ do geometrically? It rotates by $90�$ countercloc
   line(p0, (r, 0.7), mark: (end: ">", fill: blue))
   content((r + 0.5, 0.4), text(size: 0.8em, fill: blue)[vel $= i$])
 
-  // t = \u03c0/4: point at (cos 45�, sin 45�)
+  // t = \u03c0/4: point at (cos 45degree, sin 45degree)
   let a = calc.cos(45deg) * r
   let p1 = (a, a)
   set-style(stroke: none)
@@ -194,7 +194,7 @@ The map $theta |-> exp(i theta)$ is surjective onto the unit circle, but not inj
 
 == The Same Idea in 3D
 
-In the complex plane, multiplying by $i$ rotated a vector by $90�$.
+In the complex plane, multiplying by $i$ rotated a vector by $90degree$.
 
 In $RR^3$, what operation takes a vector and produces something perpendicular to it?
 
@@ -212,7 +212,7 @@ $ [bold(omega)]_times = mat(0, -omega_3, omega_2; omega_3, 0, -omega_1; -omega_2
 
 == Analogy with Euler's Formula
 
-Recall: in the complex plane, $exp(i t)$ traces a circle because $i$ rotates by $90�$.
+Recall: in the complex plane, $exp(i t)$ traces a circle because $i$ rotates by $90degree$.
 
 / *Matrix Exponential*: $exp(A) = I + A + A^2/2! + dots.c$ satisfies $dif / (dif t) exp(t A) = A exp(t A)$.
 
@@ -344,7 +344,7 @@ $
     content(pos, label)
   }
 
-  content((cx1, -2.3), text(fill: blue)[$chevron.l 1, i chevron.r$ plane: $90�$])
+  content((cx1, -2.3), text(fill: blue)[$chevron.l 1, i chevron.r$ plane: $90degree$])
 
   // (j, k) plane
   let cx2 = 2.5
@@ -377,10 +377,10 @@ $
     content(pos, label)
   }
 
-  content((cx2, -2.3), text(fill: red)[$chevron.l j, k chevron.r$ plane: $90�$])
+  content((cx2, -2.3), text(fill: red)[$chevron.l j, k chevron.r$ plane: $90degree$])
 }))
 
-Left-multiplication by $i$ rotates both planes by $90�$ counterclockwise.
+Left-multiplication by $i$ rotates both planes by $90degree$ counterclockwise.
 
 == Right-Multiplication by $i$
 
@@ -397,7 +397,7 @@ $
   let cx1 = -2.5
   let r = 1.2
 
-  // (1, i) plane \u2014 same as before
+  // (1, i) plane --- same as before
   set-style(stroke: gray + 0.5pt)
   line((cx1 - 1.7, 0), (cx1 + 1.7, 0), mark: (end: ">", fill: black))
   line((cx1, -1.7), (cx1, 1.7), mark: (end: ">", fill: black))
@@ -426,9 +426,9 @@ $
     content(pos, label)
   }
 
-  content((cx1, -2.3), text(fill: blue)[$chevron.l 1, i chevron.r$ plane: $90�$])
+  content((cx1, -2.3), text(fill: blue)[$chevron.l 1, i chevron.r$ plane: $90degree$])
 
-  // (j, k) plane \u2014 REVERSED
+  // (j, k) plane --- REVERSED
   let cx2 = 2.5
 
   set-style(stroke: gray + 0.5pt)
@@ -463,7 +463,7 @@ $
     content(pos, label)
   }
 
-  content((cx2, -2.3), text(fill: red)[$chevron.l j, k chevron.r$ plane: $-90�$])
+  content((cx2, -2.3), text(fill: red)[$chevron.l j, k chevron.r$ plane: $-90degree$])
 }))
 
 The $chevron.l 1, i chevron.r$ plane behaves the same, but the $chevron.l j, k chevron.r$ cycle is reversed!
@@ -478,14 +478,14 @@ Compose left-multiplication by $i$ with right-multiplication by $overline(i)$:
   align: center,
   table.header[*Plane*][*Left by $i$*][*Right by $overline(i)$*],
   table.hline(),
-  [$chevron.l 1, i chevron.r$], [$90�$], [$-90�$],
-  [$chevron.l j, k chevron.r$], [$90�$], [$90�$],
+  [$chevron.l 1, i chevron.r$], [$90degree$], [$-90degree$],
+  [$chevron.l j, k chevron.r$], [$90degree$], [$#hide[$-$]90degree$],
 ))
 
-- $chevron.l 1, i chevron.r$ plane: $90� - 90� = 0�$ \u2014 *fixed!*
-- $chevron.l j, k chevron.r$ plane: $90� + 90� = 180�$ \u2014 *rotated by $180�$*
+- $chevron.l 1, i chevron.r$ plane: $90degree - 90degree = 0degree$ --- *fixed!*
+- $chevron.l j, k chevron.r$ plane: $90degree + 90degree = 180degree$ --- *rotated by $180degree$*
 
-So $q |-> i q overline(i)$ rotates the $chevron.l j, k chevron.r$ plane (perpendicular to $i$) by $180�$ while leaving the $chevron.l 1, i chevron.r$ plane unchanged.
+So $q |-> i q overline(i)$ rotates the $chevron.l j, k chevron.r$ plane (perpendicular to $i$) by $180degree$ while leaving the $chevron.l 1, i chevron.r$ plane unchanged.
 
 == Generalizing to Any Unit Imaginary Quaternion
 
@@ -494,9 +494,9 @@ Nothing was special about $i$. For any unit imaginary quaternion $bold(u)$ (with
 - The $chevron.l 1, bold(u) chevron.r$ plane
 - The plane perpendicular to $chevron.l 1, bold(u) chevron.r$ in $HH$
 
-Then $q |-> bold(u) q overline(bold(u))$ rotates the perpendicular plane by $180�$ while fixing the $chevron.l 1, bold(u) chevron.r$ plane.
+Then $q |-> bold(u) q overline(bold(u))$ rotates the perpendicular plane by $180degree$ while fixing the $chevron.l 1, bold(u) chevron.r$ plane.
 
-== From $90�$ to Arbitrary Angles
+== From $bold(90degree)$ to Arbitrary Angles
 
 Recall from Euler's formula: $exp(i t)$ is a $t$-radian rotation in the complex plane.
 
@@ -516,12 +516,12 @@ Composing both:
   align: center,
   table.header[*Plane*][*Left by $exp(bold(u) t)$*][*Right by $overline(exp(bold(u) t))$*],
   table.hline(),
-  [$chevron.l 1, bold(u) chevron.r$], [$t$], [$-t$],
-  [$chevron.l 1, bold(u) chevron.r^perp$], [$t$], [$t$],
+  [$chevron.l 1, bold(u) chevron.r^(#hide[$perp$])$], [$t$], [$-t$],
+  [$chevron.l 1, bold(u) chevron.r^perp$], [$t$], [$#hide[$-$]t$],
 ))
 
-- $chevron.l 1, bold(u) chevron.r$ plane: $t - t = 0$ \u2014 *fixed*
-- $chevron.l 1, bold(u) chevron.r^perp$ \u2014 *rotated by $2t$*
+- $chevron.l 1, bold(u) chevron.r^(#hide[$perp$])$ plane: $t - t = 0#hide[$t$]$ --- *fixed*
+- $chevron.l 1, bold(u) chevron.r^perp$ plane: $t + t = 2t$ --- *rotated by $2t$*
 
 For a pure imaginary quaternion $bold(v) in "Im"(HH) tilde.equiv RR^3$, this is a rotation by angle $2t$ around axis $bold(u)$.
 
@@ -601,7 +601,7 @@ The three angles $(alpha, beta, gamma)$ parameterize $"SO"(3)$.
 
 == Problem 1: Conventions
 
-There is no single "Euler angles" \u2014 you must choose:
+There is no single "Euler angles" --- you must choose:
 
 - *Axis ordering*: $x y z$, $z y x$, $z x z$, $x z x$, ... (12 possible orderings)
 - *Intrinsic vs. extrinsic*: rotations about the body's own axes, or about the fixed world axes?
@@ -616,9 +616,9 @@ This makes implementations of physics using Euler angles more complicated.
 
 == Problem 3: Gimbal Lock
 
-Consider the $x y z$ convention with $beta = 90�$. Then $R_y (90�)$ maps the $z$-axis onto the $x$-axis, so the first and last rotations now act around the _same_ axis:
+Consider the $x y z$ convention with $beta = 90degree$. Then $R_y (90degree)$ maps the $z$-axis onto the $x$-axis, so the first and last rotations now act around the _same_ axis:
 
-$ R_x (alpha) thin R_y (90�) thin R_z (gamma) = R_y (90�) thin R_x (alpha - gamma) $
+$ R_x (alpha) thin R_y (90degree) thin R_z (gamma) = R_y (90degree) thin R_x (alpha - gamma) $
 
 Only the difference $alpha - gamma$ matters. We have lost a degree of freedom.
 
@@ -646,7 +646,7 @@ Each choice is a fork: either option is self-consistent, but mixing conventions 
 
 == Choice 1: Orientation of the Basis
 
-Given three linearly independent vectors $(bold(e)_1, bold(e)_2, bold(e)_3)$, we _declare_ them to be right-handed or left-handed. There is no way to derive this \u2014 it is a label we assign.
+Given three linearly independent vectors $(bold(e)_1, bold(e)_2, bold(e)_3)$, we _declare_ them to be right-handed or left-handed. There is no way to derive this --- it is a label we assign.
 
 Two bases have the _same_ orientation iff the change-of-basis matrix between them has $det > 0$. This splits all bases into two equivalence classes. We call one "right-handed" and the other "left-handed," but the names are arbitrary.
 
@@ -658,15 +658,15 @@ We _choose_ $bold(e)_1 times bold(e)_2 = bold(e)_3$ (right-hand rule). This lock
 
 == Choice 3: Rotation Direction
 
-Given an axis $bold(u)$, a "positive" rotation could go either way around it. The right-hand rule (curl fingers of right hand along $bold(u)$) is convention \u2014 it follows from our choice of cross product.
+Given an axis $bold(u)$, a "positive" rotation could go either way around it. The right-hand rule (curl fingers of right hand along $bold(u)$) is convention --- it follows from our choice of cross product.
 
 The infinitesimal generator $[bold(omega)]_times$ produces counterclockwise rotation precisely _because_ we defined the cross product with the right-hand rule. With the opposite sign convention, $[bold(omega)]_times$ would rotate clockwise.
 
 == The Determinant as Handedness Detector
 
 An orthogonal matrix $M$ (where $M^top M = I$) satisfies $det(M) = plus.minus 1$:
-- $det(M) = +1$: a _rotation_ \u2014 preserves whatever orientation we chose
-- $det(M) = -1$: a _reflection_ \u2014 flips orientation
+- $det(M) = +1$: a _rotation_ --- preserves whatever orientation we chose
+- $det(M) = -1$: a _reflection_ --- flips orientation
 
 This is the "S" (special) in $"SO"(3)$: we restrict to $det = +1$. Note that the determinant detects whether handedness is _preserved_, regardless of which handedness we started with.
 
@@ -676,7 +676,7 @@ MuJoCo uses a right-handed frame: $x$ forward, $y$ left, $z$ up.
 
 Unreal Engine uses a left-handed frame: $x$ forward, $y$ right, $z$ up.
 
-These differ by negating the $y$-axis: $"diag"(1, -1, 1)$, which has $det = -1$. This is a reflection, not a rotation \u2014 it cannot be represented by a quaternion or angle-axis.
+These differ by negating the $y$-axis: $"diag"(1, -1, 1)$, which has $det = -1$. This is a reflection, not a rotation --- it cannot be represented by a quaternion or angle-axis.
 
 If you naively convert a MuJoCo rotation matrix $R$ into Unreal by just passing it through, every rotation about the $x$ or $z$ axis will appear to go the wrong way. You must conjugate by the reflection:
 
@@ -721,7 +721,7 @@ For a proper change of basis ($det(P) = +1$), let $p$ be either unit quaternion 
 
 $ q' = p thin q thin overline(p) $
 
-The sign ambiguity of $p$ doesn't matter \u2014 $(-p) q overline((-p)) = p q overline(p)$.
+The sign ambiguity of $p$ doesn't matter --- $(-p) q overline((-p)) = p q overline(p)$.
 
 == Quaternions: Improper Case
 
