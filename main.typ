@@ -387,7 +387,7 @@ Left-multiplication by $i$ rotates both planes by $90degree$ counterclockwise.
 Now consider $q |-> q overline(i)$:
 
 $
-  1 & arrow.r.bar -i & quad quad quad j & arrow.r.bar k \
+  1 & arrow.r.bar -i          & quad quad quad j & arrow.r.bar k \
   i & arrow.r.bar #hide[$-$]1 & quad quad quad k & arrow.r.bar -j
 $
 
@@ -714,6 +714,71 @@ So under a change of basis $P$, the angle-axis $(bold(u), theta)$ becomes:
 - $det(P) = -1$: axis $arrow.r P bold(u)$, angle $arrow.r -theta$
 
 A reflection reverses the sense of rotation. Equivalently, keep the angle positive and negate the axis: $(- P bold(u), theta)$.
+
+#align(center, cetz.canvas(length: 1cm, {
+  import cetz.draw: *
+
+  // --- Left side: original wheel ---
+  let lx = -4
+  let wy = -0.3
+
+  // Wheel (ellipse as seen from the side)
+  set-style(stroke: black + 1.2pt)
+  circle((lx, wy), radius: (1.2, 0.5))
+
+  // CCW rotation arrow on wheel
+  set-style(stroke: blue + 1.5pt)
+  let r = 1.0
+  bezier(
+    (lx + r, wy + 0.15),
+    (lx - r, wy + 0.15),
+    (lx, wy + 0.6),
+    mark: (end: ">", fill: blue),
+  )
+
+  // Angular velocity vector pointing up
+  set-style(stroke: red + 2pt)
+  line((lx, wy + 0.5), (lx, wy + 2.2), mark: (end: ">", fill: red))
+  content((lx + 0.5, wy + 1.7), text(fill: red)[$bold(omega)$])
+
+  // --- Mirror ---
+  set-style(stroke: gray.darken(30%) + 2.5pt)
+  line((0, -1.5), (0, 2.5))
+  content((0, 2.9), text(fill: gray.darken(30%), size: 0.8em)[mirror])
+
+  // --- Right side: reflected wheel ---
+  let rx = 4
+
+  // Wheel
+  set-style(stroke: black + 1.2pt)
+  circle((rx, wy), radius: (1.2, 0.5))
+
+  // CW rotation arrow (reflection flips the spin)
+  set-style(stroke: blue + 1.5pt)
+  bezier(
+    (rx - r, wy + 0.15),
+    (rx + r, wy + 0.15),
+    (rx, wy + 0.6),
+    mark: (end: ">", fill: blue),
+  )
+
+  // Naive reflected omega still points up --- wrong!
+  set-style(stroke: red.lighten(40%) + 2pt, paint: red.lighten(40%))
+  line(
+    (rx, wy + 0.5),
+    (rx, wy + 2.2),
+    mark: (end: ">", fill: red.lighten(40%)),
+    stroke: (dash: "dashed", paint: red.lighten(40%), thickness: 2pt),
+  )
+  content((rx + 0.9, wy + 1.7), text(fill: red.lighten(40%), size: 0.8em)[$bold(omega)$?])
+
+  // Correct omega points down
+  set-style(stroke: red + 2pt)
+  line((rx, wy - 0.5), (rx, wy - 2.0), mark: (end: ">", fill: red))
+  content((rx + 0.7, wy - 1.5), text(fill: red)[$-bold(omega)$])
+}))
+
+Angular velocity is a _pseudovector_: it does not transform like an ordinary vector under reflection. The reflected wheel spins the other way, so $bold(omega)$ must flip.
 
 == Quaternions: Proper Case
 
