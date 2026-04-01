@@ -57,7 +57,7 @@ Let $f(t) = exp(2t)$. Then $f'(t) = 2 f(t)$: the velocity is always $2 times$ th
   line((1, -0.4), (1.7, -0.4), mark: (end: ">", fill: blue))
   content((1.5, -0.9), text(size: 0.7em, fill: blue)[vel $= 2 e^0 = 2$])
 
-  // Point at t=0.5: exp(1) ≈ 2.7
+  // Point at t=0.5: exp(1) \u2248 2.7
   set-style(stroke: none)
   circle((2.7, 0), radius: 0.12, fill: red)
   content((2.7, 0.6), text(fill: red)[$t = 1\/2$])
@@ -67,7 +67,7 @@ Let $f(t) = exp(2t)$. Then $f'(t) = 2 f(t)$: the velocity is always $2 times$ th
   line((2.7, -0.4), (4.5, -0.4), mark: (end: ">", fill: red))
   content((3.6, -0.9), text(size: 0.7em, fill: red)[vel $= 2 e^1$])
 
-  // Point at t=1: exp(2) ≈ 7.4
+  // Point at t=1: exp(2) \u2248 7.4
   set-style(stroke: none)
   circle((7.4, 0), radius: 0.12, fill: purple)
   content((7.4, 0.6), text(fill: purple)[$t = 1$])
@@ -88,7 +88,7 @@ Now consider $f(t) = exp(i t)$. The rule $f'(t) = i dot f(t)$ says:
   The velocity is always $i times$ the current position.
 ])
 
-What does multiplying by $i$ do geometrically? It rotates by $90°$ counterclockwise!
+What does multiplying by $i$ do geometrically? It rotates by $90�$ counterclockwise!
 
 #align(center, cetz.canvas(length: 1.2cm, {
   import cetz.draw: *
@@ -155,22 +155,22 @@ What does multiplying by $i$ do geometrically? It rotates by $90°$ counterclock
   line(p0, (r, 0.7), mark: (end: ">", fill: blue))
   content((r + 0.5, 0.4), text(size: 0.8em, fill: blue)[vel $= i$])
 
-  // t = π/4: point at (cos 45°, sin 45°)
+  // t = \u03c0/4: point at (cos 45�, sin 45�)
   let a = calc.cos(45deg) * r
   let p1 = (a, a)
   set-style(stroke: none)
   circle(p1, radius: 0.07, fill: red)
 
-  // Velocity at t=π/4: i * (cos45 + i sin45) = -sin45 + i cos45, i.e. perpendicular
+  // Velocity at t=\u03c0/4: i * (cos45 + i sin45) = -sin45 + i cos45, i.e. perpendicular
   set-style(stroke: red + 2pt)
   line(p1, (a - 0.5, a + 0.5), mark: (end: ">", fill: red))
 
-  // t = π/2: point at (0, 1)
+  // t = \u03c0/2: point at (0, 1)
   let p2 = (0, r)
   set-style(stroke: none)
   circle(p2, radius: 0.07, fill: purple)
 
-  // Velocity at t=π/2: i * i = -1, pointing left
+  // Velocity at t=\u03c0/2: i * i = -1, pointing left
   set-style(stroke: purple + 2pt)
   line(p2, (-0.7, r), mark: (end: ">", fill: purple))
   content((-0.5, r + 0.3), text(size: 0.8em, fill: purple)[vel $= -1$])
@@ -194,7 +194,7 @@ The map $theta |-> exp(i theta)$ is surjective onto the unit circle, but not inj
 
 == The Same Idea in 3D
 
-In the complex plane, multiplying by $i$ rotated a vector by $90°$.
+In the complex plane, multiplying by $i$ rotated a vector by $90�$.
 
 In $RR^3$, what operation takes a vector and produces something perpendicular to it?
 
@@ -212,7 +212,7 @@ $ [bold(omega)]_times = mat(0, -omega_3, omega_2; omega_3, 0, -omega_1; -omega_2
 
 == Analogy with Euler's Formula
 
-Recall: in the complex plane, $exp(i t)$ traces a circle because $i$ rotates by $90°$.
+Recall: in the complex plane, $exp(i t)$ traces a circle because $i$ rotates by $90�$.
 
 / *Matrix Exponential*: $exp(A) = I + A + A^2/2! + dots.c$ satisfies $dif / (dif t) exp(t A) = A exp(t A)$.
 
@@ -227,7 +227,7 @@ The velocity is always $bold(omega) times "position"$, always perpendicular. Thi
 #align(center, cetz.canvas(length: 1.4cm, {
   import cetz.draw: *
 
-  // Axis arrow (ω)
+  // Axis arrow (\u03c9)
   set-style(stroke: gray + 1.5pt)
   line((0, -1.5), (0, 2.2), mark: (end: ">", fill: gray))
   content((0.4, 2.2), $bold(omega)$)
@@ -250,7 +250,7 @@ The velocity is always $bold(omega) times "position"$, always perpendicular. Thi
 
   // Velocity arrow (perpendicular)
   set-style(stroke: purple + 1.5pt)
-  line((1.5, 0), (1.4, 0.7), mark: (end: ">", fill: purple))
+  line((1.5, 0), (1.15, 0.7), mark: (end: ">", fill: purple))
   content((1.9, 0.6), text(size: 0.8em, fill: purple)[$bold(omega) times bold(v)$])
 
   // Curved arrow showing rotation
@@ -272,31 +272,42 @@ $exp$ is surjective onto $"SO"(3)$, but each rotation matrix has infinitely many
 
 = Quaternions
 
-== The Quaternion Algebra
+== The Quaternions
 
 The _quaternions_ $HH$ extend $CC$ by adding two more imaginary units $j$ and $k$:
 
 $ q = a + b i + c j + d k, quad a, b, c, d in RR $
 
 The multiplication rules are:
-$ i^2 = j^2 = k^2 = -1, quad i j = k, quad j k = i, quad k i = j $
+$
+  i^2 = j^2 = k^2 = -1 \
+  i j = k \
+  j k = i \
+  k i = j
+$
 
 Multiplication is _not commutative_: $j i = -k$, etc.
 
-== A 4D Space
+Remind you of anything?
 
-A quaternion $q = a + b i + c j + d k$ lives in $RR^4$ with basis ${1, i, j, k}$.
+== Conjugate, Norm, and Inverse
 
-The _pure imaginary_ quaternions $b i + c j + d k$ form a copy of $RR^3$.
+The _conjugate_ of $q = a + b i + c j + d k$ is $overline(q) = a - b i - c j - d k$.
 
-The _conjugate_ is $overline(q) = a - b i - c j - d k$, and
-$ |q|^2 = q overline(q) = a^2 + b^2 + c^2 + d^2 $
+The product $q overline(q)$ gives the _squared norm_:
+$ q overline(q) = a^2 + b^2 + c^2 + d^2 = |q|^2 $
+
+If $|q| = 1$ (a _unit quaternion_), then $q overline(q) = 1$, so $overline(q)$ is the inverse of $q$:
+$ q^(-1) = overline(q) $
 
 == Left-Multiplication by $i$
 
 What does $q |-> i q$ do to the four basis elements?
 
-$ 1 arrow.r.bar i, quad i arrow.r.bar -1, quad j arrow.r.bar k, quad k arrow.r.bar -j $
+$
+  1 & arrow.r.bar i  & quad quad quad j & arrow.r.bar k \
+  i & arrow.r.bar -1 & quad quad quad k & arrow.r.bar -j
+$
 
 #align(center, cetz.canvas(length: 1.2cm, {
   import cetz.draw: *
@@ -333,7 +344,7 @@ $ 1 arrow.r.bar i, quad i arrow.r.bar -1, quad j arrow.r.bar k, quad k arrow.r.b
     content(pos, label)
   }
 
-  content((cx1, -2.3), text(fill: blue)[$(1, i)$ plane: CCW $90°$])
+  content((cx1, -2.3), text(fill: blue)[$chevron.l 1, i chevron.r$ plane: $90�$])
 
   // (j, k) plane
   let cx2 = 2.5
@@ -366,16 +377,19 @@ $ 1 arrow.r.bar i, quad i arrow.r.bar -1, quad j arrow.r.bar k, quad k arrow.r.b
     content(pos, label)
   }
 
-  content((cx2, -2.3), text(fill: red)[$(j, k)$ plane: CCW $90°$])
+  content((cx2, -2.3), text(fill: red)[$chevron.l j, k chevron.r$ plane: $90�$])
 }))
 
-Left-multiplication by $i$ rotates both planes by $90°$ counterclockwise.
+Left-multiplication by $i$ rotates both planes by $90�$ counterclockwise.
 
 == Right-Multiplication by $i$
 
 Now consider $q |-> q i$:
 
-$ 1 arrow.r.bar i, quad i arrow.r.bar -1, quad j arrow.r.bar -k, quad k arrow.r.bar j $
+$
+  1 & arrow.r.bar i  & quad quad quad j & arrow.r.bar -k \
+  i & arrow.r.bar -1 & quad quad quad k & arrow.r.bar j
+$
 
 #align(center, cetz.canvas(length: 1.2cm, {
   import cetz.draw: *
@@ -383,7 +397,7 @@ $ 1 arrow.r.bar i, quad i arrow.r.bar -1, quad j arrow.r.bar -k, quad k arrow.r.
   let cx1 = -2.5
   let r = 1.2
 
-  // (1, i) plane — same as before
+  // (1, i) plane \u2014 same as before
   set-style(stroke: gray + 0.5pt)
   line((cx1 - 1.7, 0), (cx1 + 1.7, 0), mark: (end: ">", fill: black))
   line((cx1, -1.7), (cx1, 1.7), mark: (end: ">", fill: black))
@@ -412,9 +426,9 @@ $ 1 arrow.r.bar i, quad i arrow.r.bar -1, quad j arrow.r.bar -k, quad k arrow.r.
     content(pos, label)
   }
 
-  content((cx1, -2.3), text(fill: blue)[$(1, i)$ plane: CCW $90°$])
+  content((cx1, -2.3), text(fill: blue)[$chevron.l 1, i chevron.r$ plane: $90�$])
 
-  // (j, k) plane — REVERSED
+  // (j, k) plane \u2014 REVERSED
   let cx2 = 2.5
 
   set-style(stroke: gray + 0.5pt)
@@ -428,7 +442,7 @@ $ 1 arrow.r.bar i, quad i arrow.r.bar -1, quad j arrow.r.bar -k, quad k arrow.r.
     ($-k$, 270deg, (cx2 + 0.3, -r - 0.3)),
   )
 
-  // CW cycle: j → -k → -j → k → j
+  // CW cycle: j \u2192 -k \u2192 -j \u2192 k \u2192 j
   let cw-order = (0, 3, 2, 1)
   for idx in range(4) {
     let from = cw-order.at(idx)
@@ -449,40 +463,40 @@ $ 1 arrow.r.bar i, quad i arrow.r.bar -1, quad j arrow.r.bar -k, quad k arrow.r.
     content(pos, label)
   }
 
-  content((cx2, -2.3), text(fill: red)[$(j, k)$ plane: CW $90°$])
+  content((cx2, -2.3), text(fill: red)[$chevron.l j, k chevron.r$ plane: $-90�$])
 }))
 
-The $(1, i)$ plane behaves the same, but the $(j, k)$ cycle is *reversed*.
+The $chevron.l 1, i chevron.r$ plane behaves the same, but the $chevron.l j, k chevron.r$ cycle is reversed!
 
-== The Sandwich Product $i q (-i)$
+== The Sandwich Product $i q overline(i)$
 
-Compose left-multiplication by $i$ with right-multiplication by $-i$:
+Compose left-multiplication by $i$ with right-multiplication by $overline(i)$:
 
 #align(center, table(
   columns: 3,
   stroke: none,
   align: center,
-  table.header[*Plane*][*Left by $i$*][*Right by $-i$*],
+  table.header[*Plane*][*Left by $i$*][*Right by $overline(i)$*],
   table.hline(),
-  [$(1, i)$], [CCW $90°$], [CW $90°$],
-  [$(j, k)$], [CCW $90°$], [CCW $90°$],
+  [$chevron.l 1, i chevron.r$], [$90�$], [$-90�$],
+  [$chevron.l j, k chevron.r$], [$90�$], [$90�$],
 ))
 
-- $(1, i)$ plane: $90° - 90° = 0°$ — *fixed!*
-- $(j, k)$ plane: $90° + 90° = 180°$ — *rotated by $180°$*
+- $chevron.l 1, i chevron.r$ plane: $90� - 90� = 0�$ \u2014 *fixed!*
+- $chevron.l j, k chevron.r$ plane: $90� + 90� = 180�$ \u2014 *rotated by $180�$*
 
-So $q |-> i q (-i)$ rotates the $(j, k)$ plane (perpendicular to $i$) by $180°$ while leaving the $(1, i)$ plane unchanged.
+So $q |-> i q overline(i)$ rotates the $chevron.l j, k chevron.r$ plane (perpendicular to $i$) by $180�$ while leaving the $chevron.l 1, i chevron.r$ plane unchanged.
 
 == Generalizing to Any Unit Imaginary Quaternion
 
 Nothing was special about $i$. For any unit imaginary quaternion $bold(u)$ (with $bold(u)^2 = -1$), we can decompose $HH = RR^4$ into:
 
-- The $(1, bold(u))$ plane
-- The plane perpendicular to $bold(u)$ in $"Im"(HH)$
+- The $chevron.l 1, bold(u) chevron.r$ plane
+- The plane perpendicular to $chevron.l 1, bold(u) chevron.r$ in $HH$
 
-Then $q |-> bold(u) q (-bold(u))$ rotates the perpendicular plane by $180°$ while fixing the $(1, bold(u))$ plane.
+Then $q |-> bold(u) q overline(bold(u))$ rotates the perpendicular plane by $180�$ while fixing the $chevron.l 1, bold(u) chevron.r$ plane.
 
-== From $90°$ to Arbitrary Angles
+== From $90�$ to Arbitrary Angles
 
 Recall from Euler's formula: $exp(i t)$ is a $t$-radian rotation in the complex plane.
 
@@ -490,9 +504,9 @@ The same applies in $HH$: for a unit imaginary quaternion $bold(u)$,
 
 $ exp(bold(u) t) = cos t + bold(u) sin t $
 
-Left-multiplying by $exp(bold(u) t)$ rotates both planes by $t$ radians (CCW). Right-multiplying by $exp(bold(u) t)$ rotates the $(1, bold(u))$ plane by $t$ (CCW) but the perpendicular plane by $t$ (*CW*).
+Left-multiplying by $exp(bold(u) t)$ rotates both planes by $t$ radians. Right-multiplying by $exp(bold(u) t)$ rotates the $chevron.l 1, bold(u) chevron.r$ plane by $t$ but the perpendicular plane by $-t$.
 
-== The Sandwich Product $exp(bold(u) t) thin q thin exp(-bold(u) t)$
+== The Sandwich Product $exp(bold(u) t) thin q thin overline(exp(bold(u) t))$
 
 Composing both:
 
@@ -500,16 +514,16 @@ Composing both:
   columns: 3,
   stroke: none,
   align: center,
-  table.header[*Plane*][*Left by $exp(bold(u) t)$*][*Right by $exp(-bold(u) t)$*],
+  table.header[*Plane*][*Left by $exp(bold(u) t)$*][*Right by $overline(exp(bold(u) t))$*],
   table.hline(),
-  [$(1, bold(u))$], [CCW $t$], [CW $t$],
-  [$perp bold(u)$], [CCW $t$], [CCW $t$],
+  [$chevron.l 1, bold(u) chevron.r$], [$t$], [$-t$],
+  [$chevron.l 1, bold(u) chevron.r^perp$], [$t$], [$t$],
 ))
 
-- $(1, bold(u))$ plane: $t - t = 0$ — *fixed*
-- $perp bold(u)$ plane: $t + t = 2t$ — *rotated by $2t$*
+- $chevron.l 1, bold(u) chevron.r$ plane: $t - t = 0$ \u2014 *fixed*
+- $chevron.l 1, bold(u) chevron.r^perp$ \u2014 *rotated by $2t$*
 
-For a pure imaginary quaternion $bold(v) in "Im"(HH) tilde.equiv RR^3$, the $(1, bold(u))$ component is zero anyway, so this is a rotation of $RR^3$ by angle $2t$ around axis $bold(u)$.
+For a pure imaginary quaternion $bold(v) in "Im"(HH) tilde.equiv RR^3$, this is a rotation by angle $2t$ around axis $bold(u)$.
 
 == The Quaternion Rotation Formula
 
@@ -522,14 +536,201 @@ Setting $theta = 2t$ and writing $q = exp(bold(u) thin theta\/2) = cos(theta\/2)
 
 The half-angle appears because each side of the sandwich contributes half the rotation.
 
-== Quaternions $<==>$ Angle-Axis Representation
+== Composing Quaternion Rotations
 
-Just as with rotation matrices:
+Rotate by $q$, then by $p$:
 
-$ q = exp(bold(u) thin theta\/2), quad overline(q) = exp(-bold(u) thin theta\/2) $
+$ bold(v) |-> p (q thin bold(v) thin overline(q)) overline(p) = (p q) thin bold(v) thin overline((p q)) $
 
-And the same periodicity: a full $2 pi$ rotation around $bold(u)$ sends $theta\/2 |-> theta\/2 + pi$, which _negates_ $q$:
+Since $overline(q) thin overline(p) = overline(p q)$, the composition of two quaternion rotations is just quaternion multiplication.
 
-$ q "and" -q "represent the same rotation" $
+== Sign Ambiguity
 
-The map from unit quaternions to rotations is surjective onto $"SO"(3)$, but $2$-to-$1$: every rotation has exactly two quaternion representatives, $plus.minus q$.
+Replacing $q$ with $-q$ in the sandwich product:
+
+$ (-q) thin bold(v) thin overline((-q)) = (-q) thin bold(v) thin (-overline(q)) = q thin bold(v) thin overline(q) $
+
+So $q$ and $-q$ represent the same rotation. The map from unit quaternions to rotations is surjective onto $"SO"(3)$, but $2$-to-$1$: every rotation has exactly two quaternion representatives, $plus.minus q$.
+
+There is no continuous way to pick one: any global sign convention must have a discontinuity somewhere in $"SO"(3)$.
+
+= Practical Considerations
+
+== Why Not Just Use Angle-Axis?
+
+We've shown that rotation matrices, quaternions, and the matrix exponential all reduce to angle-axis $(bold(u), theta)$ under the hood.
+
+But angle-axis is expensive to _use_. Applying $(bold(u), theta)$ to a vector $bold(v)$ requires Rodrigues' formula:
+
+$ bold(v) |-> bold(v) cos theta + (bold(u) times bold(v)) sin theta + bold(u) (bold(u) dot bold(v))(1 - cos theta) $
+
+The composition of $(bold(u)_1, theta_1)$ and $(bold(u)_2, theta_2)$ is given by:
+
+$
+  theta &= 2 arccos(cos theta_1/2 cos theta_2/2 - sin theta_1/2 sin theta_2/2 (bold(u)_1 dot bold(u)_2)) \
+  bold(u) &= (sin theta_1/2 cos theta_2/2 thin bold(u)_1 + cos theta_1/2 sin theta_2/2 thin bold(u)_2 + sin theta_1/2 sin theta_2/2 (bold(u)_1 times bold(u)_2)) / (sin theta/2)
+$
+
+== Matrices vs. Quaternions
+
+#align(center, table(
+  columns: 3,
+  stroke: none,
+  align: center,
+  table.header[][*Rotation Matrix*][*Unit Quaternion*],
+  table.hline(),
+  [*Storage*], [9 floats], [4 floats],
+  [*Apply to vector*], [15 ops], [30 ops],
+  [*Compose*], [45 ops], [28 ops],
+))
+
+Rule of thumb:
+- More *application* (rotating many vectors by the same rotation) $arrow.r$ matrices
+- More *composition* (chaining many rotations) $arrow.r$ quaternions
+- Angle-axis is easiest to understand for humans
+
+#heading(numbering: none)[Appendix A: Euler Angles]
+
+== What Are Euler Angles?
+
+Decompose a rotation into three successive rotations about coordinate axes:
+
+$ R = R_z (gamma) thin R_y (beta) thin R_x (alpha) $
+
+The three angles $(alpha, beta, gamma)$ parameterize $"SO"(3)$.
+
+== Problem 1: Conventions
+
+There is no single "Euler angles" \u2014 you must choose:
+
+- *Axis ordering*: $x y z$, $z y x$, $z x z$, $x z x$, ... (12 possible orderings)
+- *Intrinsic vs. extrinsic*: rotations about the body's own axes, or about the fixed world axes?
+
+This gives 24 distinct conventions, all called "Euler angles."
+
+== Problem 2: Physics
+
+Decomposing a rotation into three axis-aligned rotations is _unphysical_: real rotations do not privilege one axis over another.
+
+This makes implementations of physics using Euler angles more complicated.
+
+== Problem 3: Gimbal Lock
+
+Consider the $x y z$ convention with $beta = 90�$. Then $R_y (90�)$ maps the $z$-axis onto the $x$-axis, so the first and last rotations now act around the _same_ axis:
+
+$ R_x (alpha) thin R_y (90�) thin R_z (gamma) = R_y (90�) thin R_x (alpha - gamma) $
+
+Only the difference $alpha - gamma$ matters. We have lost a degree of freedom.
+
+Near gimbal lock, the angles become numerically unstable.
+
+== Problem 4: Performance
+
+Direct formulas for applying Euler angles exist, but they require evaluating six trigonometric functions ($sin$ and $cos$ of each angle). Trig operations are slow!!!
+
+In practice, if you need to apply the rotation more than once, you convert to a matrix first anyway.
+
+== They will bring only suffering and despair
+
+Occasionally useful as a human interface, e.g. game engine inspectors where a designer adjusts pitch/yaw/roll by hand.
+
+They should *never* be used as a software-internal representation. The convention ambiguity invites bugs, gimbal lock causes numerical issues, and computation is slow.
+
+#heading(numbering: none)[Appendix B: Handedness]
+
+== Where Does Handedness Come From?
+
+$RR^3$ has no intrinsic handedness. There is no experiment you can perform in pure linear algebra to distinguish "left" from "right." Handedness enters through a sequence of arbitrary choices we make.
+
+Each choice is a fork: either option is self-consistent, but mixing conventions from different forks produces sign errors.
+
+== Choice 1: Orientation of the Basis
+
+Given three linearly independent vectors $(bold(e)_1, bold(e)_2, bold(e)_3)$, we _declare_ them to be right-handed or left-handed. There is no way to derive this \u2014 it is a label we assign.
+
+Two bases have the _same_ orientation iff the change-of-basis matrix between them has $det > 0$. This splits all bases into two equivalence classes. We call one "right-handed" and the other "left-handed," but the names are arbitrary.
+
+== Choice 2: The Cross Product
+
+The cross product $bold(a) times bold(b)$ is determined up to a sign: it must be orthogonal to both $bold(a)$ and $bold(b)$ with magnitude $|bold(a)| |bold(b)| sin theta$, but there are two such vectors.
+
+We _choose_ $bold(e)_1 times bold(e)_2 = bold(e)_3$ (right-hand rule). This locks the cross product to our basis orientation. Had we chosen the opposite, all cross products would negate, and the "right-hand rule" would become a left-hand rule.
+
+== Choice 3: Rotation Direction
+
+Given an axis $bold(u)$, a "positive" rotation could go either way around it. The right-hand rule (curl fingers of right hand along $bold(u)$) is convention \u2014 it follows from our choice of cross product.
+
+The infinitesimal generator $[bold(omega)]_times$ produces counterclockwise rotation precisely _because_ we defined the cross product with the right-hand rule. With the opposite sign convention, $[bold(omega)]_times$ would rotate clockwise.
+
+== The Determinant as Handedness Detector
+
+An orthogonal matrix $M$ (where $M^top M = I$) satisfies $det(M) = plus.minus 1$:
+- $det(M) = +1$: a _rotation_ \u2014 preserves whatever orientation we chose
+- $det(M) = -1$: a _reflection_ \u2014 flips orientation
+
+This is the "S" (special) in $"SO"(3)$: we restrict to $det = +1$. Note that the determinant detects whether handedness is _preserved_, regardless of which handedness we started with.
+
+== Example: MuJoCo to Unreal Engine
+
+MuJoCo uses a right-handed frame: $x$ forward, $y$ left, $z$ up.
+
+Unreal Engine uses a left-handed frame: $x$ forward, $y$ right, $z$ up.
+
+These differ by negating the $y$-axis: $"diag"(1, -1, 1)$, which has $det = -1$. This is a reflection, not a rotation \u2014 it cannot be represented by a quaternion or angle-axis.
+
+If you naively convert a MuJoCo rotation matrix $R$ into Unreal by just passing it through, every rotation about the $x$ or $z$ axis will appear to go the wrong way. You must conjugate by the reflection:
+
+$ R_"unreal" = S thin R_"mujoco" thin S, quad S = "diag"(1, -1, 1) $
+
+#heading(numbering: none)[Appendix C: Changes of Basis]
+
+== The General Rule
+
+A rotation $R$ expressed in basis $A$ is expressed in basis $B$ by conjugation:
+
+$ R_B = P thin R_A thin P^(-1) $
+
+where $P$ is the change-of-basis matrix from $A$ to $B$. If $P$ is orthogonal, $P^(-1) = P^top$.
+
+This works for _any_ orthogonal $P$, whether $det(P) = +1$ (rotation) or $det(P) = -1$ (reflection). The result always has $det(R_B) = +1$.
+
+== Rotation Matrices
+
+Rotation matrices transform by conjugation directly:
+
+$ R' = P R P^top $
+
+This is straightforward and works uniformly for proper and improper $P$. No special cases.
+
+== Angle-Axis
+
+A key identity for orthogonal $P$:
+
+$ P [bold(v)]_times P^top = det(P) thin [P bold(v)]_times $
+
+So under a change of basis $P$, the angle-axis $(bold(u), theta)$ becomes:
+
+- $det(P) = +1$: axis $arrow.r P bold(u)$, angle $arrow.r theta$
+- $det(P) = -1$: axis $arrow.r P bold(u)$, angle $arrow.r -theta$
+
+A reflection reverses the sense of rotation. Equivalently, keep the angle positive and negate the axis: $(- P bold(u), theta)$.
+
+== Quaternions: Proper Case
+
+For a proper change of basis ($det(P) = +1$), let $p$ be either unit quaternion representing $P$. Then:
+
+$ q' = p thin q thin overline(p) $
+
+The sign ambiguity of $p$ doesn't matter \u2014 $(-p) q overline((-p)) = p q overline(p)$.
+
+== Quaternions: Improper Case
+
+For an improper change of basis ($det(P) = -1$), there is no quaternion for $P$. We must work component-wise.
+
+For a single-axis reflection $S_k$ (negate axis $k$), the quaternion $q = w + x i + y j + z k$ transforms by negating the imaginary components for axes _not_ negated by $S_k$.
+
+Example: $S = "diag"(1, -1, 1)$ negates the $y$-axis, so negate the $i$ and $k$ components:
+
+$ q = w + x i + y j + z k quad arrow.r quad q' = w - x i + y j - z k $
+
+This is the quaternion analogue of the $S R S$ conjugation for matrices.
