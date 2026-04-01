@@ -382,13 +382,13 @@ $
 
 Left-multiplication by $i$ rotates both planes by $90degree$ counterclockwise.
 
-== Right-Multiplication by $i$
+== Right-Multiplication by $overline(i)$
 
-Now consider $q |-> q i$:
+Now consider $q |-> q overline(i)$:
 
 $
-  1 & arrow.r.bar i  & quad quad quad j & arrow.r.bar -k \
-  i & arrow.r.bar -1 & quad quad quad k & arrow.r.bar j
+  1 & arrow.r.bar -i & quad quad quad j & arrow.r.bar k \
+  i & arrow.r.bar #hide[$-$]1 & quad quad quad k & arrow.r.bar -j
 $
 
 #align(center, cetz.canvas(length: 1.2cm, {
@@ -397,7 +397,7 @@ $
   let cx1 = -2.5
   let r = 1.2
 
-  // (1, i) plane --- same as before
+  // (1, i) plane --- REVERSED
   set-style(stroke: gray + 0.5pt)
   line((cx1 - 1.7, 0), (cx1 + 1.7, 0), mark: (end: ">", fill: black))
   line((cx1, -1.7), (cx1, 1.7), mark: (end: ">", fill: black))
@@ -409,12 +409,16 @@ $
     ($-i$, 270deg, (cx1 + 0.3, -r - 0.3)),
   )
 
-  for k in range(4) {
-    let (_, start-angle, _) = pts1.at(k)
-    let (_, end-angle, _) = pts1.at(calc.rem(k + 1, 4))
+  // CW cycle: 1 → -i → -1 → i → 1
+  let cw-order = (0, 3, 2, 1)
+  for idx in range(4) {
+    let from = cw-order.at(idx)
+    let to = cw-order.at(calc.rem(idx + 1, 4))
+    let (_, start-angle, _) = pts1.at(from)
+    let (_, end-angle, _) = pts1.at(to)
     let start-pt = (cx1 + calc.cos(start-angle) * r, calc.sin(start-angle) * r)
     let end-pt = (cx1 + calc.cos(end-angle) * r, calc.sin(end-angle) * r)
-    let mid-angle = start-angle + 45deg
+    let mid-angle = start-angle - 45deg
     let bend-pt = (cx1 + calc.cos(mid-angle) * (r + 0.4), calc.sin(mid-angle) * (r + 0.4))
     set-style(stroke: blue + 1.5pt)
     bezier(start-pt, end-pt, bend-pt, mark: (end: ">", fill: blue))
@@ -426,9 +430,9 @@ $
     content(pos, label)
   }
 
-  content((cx1, -2.3), text(fill: blue)[$chevron.l 1, i chevron.r$ plane: $90degree$])
+  content((cx1, -2.3), text(fill: blue)[$chevron.l 1, i chevron.r$ plane: $-90degree$])
 
-  // (j, k) plane --- REVERSED
+  // (j, k) plane --- same direction as left-mult
   let cx2 = 2.5
 
   set-style(stroke: gray + 0.5pt)
@@ -442,16 +446,12 @@ $
     ($-k$, 270deg, (cx2 + 0.3, -r - 0.3)),
   )
 
-  // CW cycle: j \u2192 -k \u2192 -j \u2192 k \u2192 j
-  let cw-order = (0, 3, 2, 1)
-  for idx in range(4) {
-    let from = cw-order.at(idx)
-    let to = cw-order.at(calc.rem(idx + 1, 4))
-    let (_, start-angle, _) = pts2.at(from)
-    let (_, end-angle, _) = pts2.at(to)
+  for k in range(4) {
+    let (_, start-angle, _) = pts2.at(k)
+    let (_, end-angle, _) = pts2.at(calc.rem(k + 1, 4))
     let start-pt = (cx2 + calc.cos(start-angle) * r, calc.sin(start-angle) * r)
     let end-pt = (cx2 + calc.cos(end-angle) * r, calc.sin(end-angle) * r)
-    let mid-angle = start-angle - 45deg
+    let mid-angle = start-angle + 45deg
     let bend-pt = (cx2 + calc.cos(mid-angle) * (r + 0.4), calc.sin(mid-angle) * (r + 0.4))
     set-style(stroke: red + 1.5pt)
     bezier(start-pt, end-pt, bend-pt, mark: (end: ">", fill: red))
@@ -463,10 +463,10 @@ $
     content(pos, label)
   }
 
-  content((cx2, -2.3), text(fill: red)[$chevron.l j, k chevron.r$ plane: $-90degree$])
+  content((cx2, -2.3), text(fill: red)[$chevron.l j, k chevron.r$ plane: $90degree$])
 }))
 
-The $chevron.l 1, i chevron.r$ plane behaves the same, but the $chevron.l j, k chevron.r$ cycle is reversed!
+The $chevron.l j, k chevron.r$ plane behaves the same as left-multiplication, but the $chevron.l 1, i chevron.r$ cycle is reversed!
 
 == The Sandwich Product $i q overline(i)$
 
@@ -504,7 +504,7 @@ The same applies in $HH$: for a unit imaginary quaternion $bold(u)$,
 
 $ exp(bold(u) t) = cos t + bold(u) sin t $
 
-Left-multiplying by $exp(bold(u) t)$ rotates both planes by $t$ radians. Right-multiplying by $exp(bold(u) t)$ rotates the $chevron.l 1, bold(u) chevron.r$ plane by $t$ but the perpendicular plane by $-t$.
+Left-multiplying by $exp(bold(u) t)$ rotates both planes by $t$ radians. Right-multiplying by $overline(exp(bold(u) t))$ reverses the $chevron.l 1, bold(u) chevron.r$ rotation to $-t$ but keeps the perpendicular plane at $t$.
 
 == The Sandwich Product $exp(bold(u) t) thin q thin overline(exp(bold(u) t))$
 
