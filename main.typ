@@ -260,7 +260,7 @@ The velocity is always $bold(omega) times "position"$, always perpendicular. Thi
 
 $ exp(t [bold(omega)]_times) = R(bold(omega), t) $
 
-== Rotation Matrices $<==>$ Angle-Axis Representation
+== Rotation Matrices $<==>$ Angle-Axis
 
 Every rotation vector $bold(omega) in RR^3$ gives a rotation matrix via $exp([bold(omega)]_times)$, and every rotation matrix arises this way.
 
