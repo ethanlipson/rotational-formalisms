@@ -196,31 +196,33 @@ The map $theta |-> exp(i theta)$ is surjective onto the unit circle, but not inj
 
 In the complex plane, multiplying by $i$ rotated a vector by $90degree$.
 
-In $RR^3$, what operation takes a vector and produces something perpendicular to it?
+In $RR^3$, the cross product does the same thing: given a fixed axis $bold(omega)$, the map $bold(v) |-> bold(omega) times bold(v)$ is always $perp$ to $bold(v)$.
 
-The cross product! Given a fixed axis $bold(omega)$, the map $bold(v) |-> bold(omega) times bold(v)$ is always $perp$ to $bold(v)$.
+So a vector spinning around $bold(omega)$ satisfies
 
-== The Cross Product as a Matrix
+$ dif / (dif t) bold(v)(t) = bold(omega) times bold(v)(t) $
 
-The cross product $bold(omega) times bold(v)$ is linear in $bold(v)$, so it can be written as a matrix multiplication:
+== Solving the ODE
 
-$ bold(omega) times bold(v) = [bold(omega)]_times bold(v) $
+We solved $f'(t) = k f(t)$ for a scalar $k$ with $exp(k t)$. Can we do the same here?
 
-where $[bold(omega)]_times$ is the skew-symmetric matrix
+We need the right-hand side in the form $A bold(v)(t)$. Since the cross product is linear in $bold(v)$, we can write #box[$bold(omega) times bold(v) = [bold(omega)]_times bold(v)$], where
 
 $ [bold(omega)]_times = mat(0, -omega_3, omega_2; omega_3, 0, -omega_1; -omega_2, omega_1, 0) $
 
-== Analogy with Euler's Formula
+Now our ODE is $bold(v)'(t) = [bold(omega)]_times bold(v)(t)$.
 
-Recall: in the complex plane, $exp(i t)$ traces a circle because $i$ rotates by $90degree$.
+== The Matrix Exponential
 
-/ *Matrix Exponential*: $exp(A) = I + A + A^2/2! + dots.c$ satisfies $dif / (dif t) exp(t A) = A exp(t A)$.
+We want $exp(t A)$ to satisfy the same characteristic property:
 
-So if we set $f(t) = exp(t [bold(omega)]_times) bold(v)$, then
+$ dif / (dif t) exp(t A) = A exp(t A) $
 
-$ dif / (dif t) f(t) = [bold(omega)]_times f(t) $
+The power series gives us exactly this:
 
-The velocity is always $bold(omega) times "position"$, always perpendicular. This is circular motion around the axis $bold(omega)$!
+$ exp(A) = I + A + A^2 / 2! + A^3 / 3! + dots.c $
+
+So the solution is $bold(v)(t) = exp(t [bold(omega)]_times) bold(v)(0)$: the velocity is always $bold(omega) times "position"$, always perpendicular. This is circular motion around the axis $bold(omega)$!
 
 == Exp of a Skew-Symmetric Matrix is a Rotation
 
